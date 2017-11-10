@@ -1,0 +1,12 @@
+{
+    "model":"user",
+    "row_prefix":"user.",
+    "fields":
+        [
+            {"type":"input", "label":"产品编号", 
+                "name":"serial","required":"true"},
+            {"type":"input", "label":"产品名称", 
+                "name":"name","required":""},
+            {"type":"input","label":"产品简介","name":"desc"}
+        ]
+}

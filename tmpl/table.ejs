@@ -1,0 +1,10 @@
+<tr>
+    <%_ fields.forEach(function(field) {_%>
+    <th><%=field.label%></th>
+    <%_ }); _%>
+</tr>
+<tr>
+    <%_ fields.forEach(function(field) {_%>
+    <td>{{row.<%=row_prefix%><%=field.name%>}}</td>
+    <%_ }); _%>
+</tr>

@@ -1,0 +1,10 @@
+<tr>
+    <th>产品编号</th>
+    <th>产品名称</th>
+    <th>产品简介</th>
+</tr>
+<tr>
+    <td>{{row.serial}}</td>
+    <td>{{row.name}}</td>
+    <td>{{row.desc}}</td>
+</tr>
