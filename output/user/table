@@ -4,7 +4,7 @@
     <th>产品简介</th>
 </tr>
 <tr>
-    <td>{{row.user.serial}}</td>
-    <td>{{row.user.name}}</td>
-    <td>{{row.user.desc}}</td>
+    <td st-sort＝'user.serial'>{{row.user.serial}}</td>
+    <td >{{row.user.name}}</td>
+    <td >{{row.user.desc}}</td>
 </tr>

@@ -1,0 +1,30 @@
+{
+    "model":"product",
+    "row_prefix":"",
+    "fields":
+        [
+            {"type":"input", "label":"产品编号", 
+                "name":"number","required":"true"},
+            {"type":"input", "label":"产品名称", 
+                "name":"name","required":""},
+            {"type":"select", "label":"产品类型",
+                "name":"type",
+                "options":[
+                    {"value":"1","text":"服务"}
+                ]
+            },
+            {"type":"input","label":"产品简介","name":"short_desc"} ,
+            {"type":"input", "label":"限制账号数量", 
+                "name":"account_capacity","required":"true"},
+            {"type":"input", "label":"限制订单数量", 
+                "name":"order_capacity","required":"true"},
+            {"type":"input", "label":"限制SKU数量", 
+                "name":"sku_capacity","required":""},
+            {"type":"input", "label":"最小购买周期", 
+                "name":"min_purchase_due","required":"true"},
+            {"type":"input", "label":"单价", 
+                "name":"price","required":""},
+            {"type":"area", "label":"产品描述", 
+                "name":"description","required":""}
+        ]
+}

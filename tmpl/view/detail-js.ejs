@@ -1,0 +1,66 @@
+<script language="javascript">
+    var id = '<%=id%>';
+
+    var app = angular.module('ngapp',['smart-table','ui-notification','ui.bootstrap','dialogs.main',"angucomplete-alt",'ngTagsInput']);
+
+    app.controller('basicsCtrl', ['$window','$scope','$http','$timeout','$log','Notification','dialogs',
+    function ($window,$scope,$http,$timeout,$log,Notification,dialogs) {
+        $scope.sysconst = sysconst;
+        $scope.sysconstParser =function (key,cid) {
+            return sysconst[key].values.find(x => x.cid === cid);
+        }
+        $scope.doTheBack = function() {
+          window.history.back();
+        };
+        //
+        if('<%=id%>'!='0'){
+            var req = {
+              method: 'GET',
+              url: './<%=id%>/json',
+          };
+          $http(req).then(function(response){
+              console.log(response);
+              var _r = response.data;
+              if(_r.status =="fail"&&_r.header.display.length>0){
+                  dialogs.error('',_r.header.display);
+              }else{
+                  $scope.<?=model?> = _r.content;
+              }
+          }, function(response){
+              dialogs.error('','错误');
+          });
+        }
+
+        //
+        $scope.submit = function(){
+            $scope.theform.$submitted = true;
+            if($scope.theform.$valid){
+                var postvalue = $scope.<?=model?>;
+                var req = {
+                    method: 'POST',
+                    url: './<%=id%>/json',
+                    data: postvalue
+                };
+                $http(req).then(function(response){
+                    console.log(response);
+                    var v = response.data;
+                    if(v && v.status && v.status == "success" ){
+                        if('<%=id%>'==0){
+                            console.log(v);
+                            $window.location.href = v.content.niid;
+                        }else
+                            dialogs.notify('提交成功', '修改已提交和保存');
+                    }else{
+                        dialogs.error('提交失败','请稍后重试');
+                    }
+
+                }, function(response){
+                    dialogs.error('提交失败','请稍后重试');
+                });
+        }else{
+            dialogs.error('提交失败','请填好所有栏位后提交')
+        }};
+
+
+    }]);
+</script>

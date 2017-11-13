@@ -1,0 +1,24 @@
+<tr>
+    <th>产品编号</th>
+    <th>产品名称</th>
+    <th>产品类型</th>
+    <th>产品简介</th>
+    <th>限制账号数量</th>
+    <th>限制订单数量</th>
+    <th>限制SKU数量</th>
+    <th>最小购买周期</th>
+    <th>单价</th>
+    <th>产品描述</th>
+</tr>
+<tr>
+    <td >{{row.number}}</td>
+    <td >{{row.name}}</td>
+    <td >{{row.type}}</td>
+    <td >{{row.short_desc}}</td>
+    <td >{{row.account_capacity}}</td>
+    <td >{{row.order_capacity}}</td>
+    <td >{{row.sku_capacity}}</td>
+    <td >{{row.min_purchase_due}}</td>
+    <td >{{row.price}}</td>
+    <td >{{row.description}}</td>
+</tr>

@@ -1,0 +1,83 @@
+var express = require('express');
+var router = express.Router();
+var nconf = require('nconf');
+var dbclient = require(__base+'/tool/dbServiceClient.js');
+var sessionService  = require(__base+'/service/sessionService.js');
+var wxm = require(__base+'/service/wxMessenger.js');
+var nconf = require('nconf');
+var sms = require(__base+'/tool/sms.js');
+
+function toQueryString(obj) {
+    var parts = [];
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            if(obj[i]!==null)
+                parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+        }
+    }
+    return parts.join("&");
+}
+
+router.get('/list', function(req, res){
+    res.render('<%=listTemplate%>',{});
+});
+
+router.post('/search/json', function(req, res){
+    var api = '<%=listApi%>';
+    var query = toQueryString(req.body);
+    api = api+query;
+    dbclient.request(api, null,function(error, response, body){
+        if(typeof body === typeof 'String')
+        body = JSON.parse(body);
+        if (!error && response.statusCode == 200  && response.body) {
+            res.json(body.contents);
+        }else{
+            res.json([]);
+        }
+    });
+});
+
+router.get('/detail/:id', function(req, res){
+    res.render('<%=detailTemplate%>',{
+        "id": req.params.id
+    });
+});
+
+router.get('/detail/:id/json', function(req,res){
+    var api = '<%=detailApi%>'+req.params.id;
+    dbclient.request(api, null,function(error, response, body){
+        if(typeof body === typeof 'String')
+        body = JSON.parse(body);
+        if (!error && response.statusCode == 200  && response.body) {
+            var data= {"status":"success"};
+            data.header = body.header;
+            data.content = body.content;
+            res.json(data);
+        }else{
+            var data= {"status":"fail"};
+            data.header = {"display":"Server Error"};
+            res.json(data);
+        }
+    });
+});
+
+router.post('/detail/:id/json', function(req,res){
+    var id = req.params.id;
+    var api = '<%=detailPostApi%>'+id;
+    var json = req.body;
+    var headers = {};
+    dbclient.postJSON(api, null,json,function(error, response, body){
+            if(typeof body === typeof 'String')
+                body = JSON.parse(body);
+            if (!error && response.body && body.header.code == 200) {
+                var data = {"status":"success"};
+                data["content"] = body.content;
+                res.json(data);
+            }else{
+              var data = {"status":"fail"};
+              res.json(data);
+            }
+        },headers);
+});
+
+module.exports = router;

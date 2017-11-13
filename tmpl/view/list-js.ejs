@@ -1,0 +1,48 @@
+<script language="javascript">
+    var app = angular.module('ngapp',['smart-table','ui-notification','ngSanitize']);
+    app.controller('basicsCtrl', ['$scope','$http','$timeout','$window','$log','Notification',
+    function ($scope,$http,$timeout,$window,$log,Notification) {
+        $scope.services = [
+        ];
+        $scope.sysconst = sysconst;
+        $scope.sysconstParser =function (key,cid) {
+            return sysconst[key].values.find(x => x.cid === cid);
+        }
+        $scope.searchParam={};
+        $scope.parseOffspring = function(s){
+            var _i = s.split(',');
+            var _r = "";
+            for(var i=0; i<_i.length; i++){
+                var _t = _i[i].split(':');
+                if(_t[1])
+                    _r +="<a href='"+_t[1]+"'>"+_t[0]+"</a>,";
+            }
+            return _r;
+        }
+        $scope.sysconst = sysconst;
+        $scope.doTheBack = function() {
+          window.history.back();
+      };
+    
+        $scope.search = function(){
+            var postvalue = $scope.searchParam;
+            var req = {
+                method: 'POST',
+                url: 'search/json',
+                data: postvalue
+            };
+    
+            $http(req).then(function(response){
+                console.log(response);
+                var _r = response.data;
+                $scope.services = _r.filter(function(x){return x;}) ;
+                $scope.displayCollection = [].concat($scope.services);
+            }, function(response){
+                console.log(response);
+            });
+        }
+    
+        $scope.search();
+    
+    }]);
+    </script>

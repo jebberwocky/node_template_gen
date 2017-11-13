@@ -1,10 +1,14 @@
 <tr>
     <%_ fields.forEach(function(field) {_%>
+    <%_ if(!field.hide) {_%>
     <th><%=field.label%></th>
+    <%_}_%>
     <%_ }); _%>
 </tr>
 <tr>
     <%_ fields.forEach(function(field) {_%>
-    <td>{{row.<%=row_prefix%><%=field.name%>}}</td>
+    <%_ if(!field.hide) {_%>
+    <td <%- field.sort?"st-sort＝'"+field.sort+"'":'' _%>>{{row.<%=row_prefix%><%=field.name%>}}</td>
+    <%_}_%>
     <%_ }); _%>
 </tr>

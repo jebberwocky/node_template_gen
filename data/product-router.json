@@ -1,0 +1,7 @@
+{
+    "listTemplate":"manage/product/product-list.ejs",
+    "listApi":"/products?",
+    "detailTemplate":"manage/product/product-detail.ejs",
+    "detailApi":"/product/",
+    "detailPostApi":"/product/"
+}
