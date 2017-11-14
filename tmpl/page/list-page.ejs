@@ -1,0 +1,50 @@
+<div id="page-wrapper" ng-app="ngapp">
+
+    <div class="container-fluid">
+        <div>
+            <div ng-cloak ng-controller="basicsCtrl">
+                <div>
+                    <div class="pull-left btn-group btn-group-sm" role="group">
+                        <button type="button" ng-click="doTheBack();" class="btn btn-info">返回</button>
+                    </div>
+                    <div class="pull-left">
+                        <div class="page-header">
+                        <h4><?=title?>列表</h4>
+                        </div>
+                    </div>
+                </div>
+                <table st-table="displayCollection" st-safe-src="services" class="boxtable table table-striped">
+                    <thead>
+                        <tr ng-form="searchForm">
+
+                        </tr>
+                        <tr>
+        <?_ fields.forEach(function(field) {_?>
+        <?_ if(!field.hide) {_?>
+        <th><?=field.label?></th>
+        <?_}_?>
+        <?_ }); _?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in displayCollection">
+        <?_ fields.forEach(function(field) {_?>
+        <?_ if(!field.hide) {_?>
+        <td <?- field.sort?"st-sort＝'"+field.sort+"'":'' _?>>{{row.<?=row_prefix?><?=field.name?>}}</td>
+        <?_}_?>
+        <?_ }); _?>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>

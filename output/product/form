@@ -37,7 +37,7 @@
     <div class="col-md-8">
         <input id="account_capacity"
         ng-model="product.account_capacity"
-        name="account_capacity" type="text" placeholder="" class="form-control input-sm" required="true">
+        name="account_capacity" type="number" placeholder="" class="form-control input-sm" required="true">
     </div>
 </div>
 <div class="form-group">
@@ -45,7 +45,7 @@
     <div class="col-md-8">
         <input id="order_capacity"
         ng-model="product.order_capacity"
-        name="order_capacity" type="text" placeholder="" class="form-control input-sm" required="true">
+        name="order_capacity" type="number" placeholder="" class="form-control input-sm" required="true">
     </div>
 </div>
 <div class="form-group">
@@ -53,7 +53,7 @@
     <div class="col-md-8">
         <input id="sku_capacity"
         ng-model="product.sku_capacity"
-        name="sku_capacity" type="text" placeholder="" class="form-control input-sm" required="">
+        name="sku_capacity" type="number" placeholder="" class="form-control input-sm" required="">
     </div>
 </div>
 <div class="form-group">
@@ -61,7 +61,7 @@
     <div class="col-md-8">
         <input id="min_purchase_due"
         ng-model="product.min_purchase_due"
-        name="min_purchase_due" type="text" placeholder="" class="form-control input-sm" required="true">
+        name="min_purchase_due" type="number" placeholder="" class="form-control input-sm" required="true">
     </div>
 </div>
 <div class="form-group">
@@ -69,7 +69,7 @@
     <div class="col-md-8">
         <input id="price"
         ng-model="product.price"
-        name="price" type="text" placeholder="" class="form-control input-sm" required="">
+        name="price" type="number" placeholder="" class="form-control input-sm" required="">
     </div>
 </div>
 <div class="form-group">

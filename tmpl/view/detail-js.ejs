@@ -2,7 +2,19 @@
     var id = '<%=id%>';
 
     var app = angular.module('ngapp',['smart-table','ui-notification','ui.bootstrap','dialogs.main',"angucomplete-alt",'ngTagsInput']);
-
+    app.directive('convertToNumber', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+            ngModel.$parsers.push(function(val) {
+                return val != null ? parseInt(val, 10) : null;
+            });
+            ngModel.$formatters.push(function(val) {
+                return val != null ? '' + val : null;
+            });
+            }
+        };
+    });
     app.controller('basicsCtrl', ['$window','$scope','$http','$timeout','$log','Notification','dialogs',
     function ($window,$scope,$http,$timeout,$log,Notification,dialogs) {
         $scope.sysconst = sysconst;

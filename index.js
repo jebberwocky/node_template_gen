@@ -13,7 +13,7 @@ function gen(data, templateFile, outputFile, option){
     }); 
 }
 
-var strs = ["user","product"];
+var strs = ["product"];
 
 strs.forEach(function(s){
     var data = require('./data/'+s+'.json');
@@ -21,6 +21,8 @@ strs.forEach(function(s){
     gen(data,'/tmpl/table.ejs',"./output/"+s+"/table");
     gen(data,'/tmpl/view/detail-js.ejs', "./output/"+s+"/form-js", {delimiter: '?'});
     gen(data,'/tmpl/view/list-js.ejs', "./output/"+s+"/list-js", {delimiter: '?'});
+    gen(data,'/tmpl/page/list-page.ejs', "./output/"+s+"/list-page", {delimiter: '?'});
+    gen(data,'/tmpl/page/detail-page.ejs', "./output/"+s+"/detial-page");
 });
 
 var routers = ["product"];

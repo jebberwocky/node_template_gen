@@ -9,6 +9,16 @@
     </div>
 </div>
     <%_}_%>
+    <%_ if(field.type == 'number') {_%>
+<div class="form-group">
+    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-8">
+        <input id="<%=field.name%>"
+        ng-model="<%=model%>.<%=field.name%>"
+        name="<%=field.name%>" type="number" placeholder="" class="form-control input-sm" required="<%=field.required%>">
+    </div>
+</div>
+    <%_}_%>
     <%_ if(field.type == 'datetime-local') {_%>
 <div class="form-group">
     <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>

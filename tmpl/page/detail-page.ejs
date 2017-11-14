@@ -1,0 +1,72 @@
+<div id="page-wrapper" ng-app="ngapp">
+    <div class="container-fluid">
+        <div ng-cloak ng-controller="basicsCtrl" class="order-edit">
+            <div>
+                <div class="pull-left">
+                <div class="page-header">
+                <h4><%=title%></h4>
+                </div>
+                </div>
+            </div>
+            <form name="theform" ng-class="{'submitted': theform.$submitted}"  class="form-horizontal">
+            <div class="row"></div>
+            <%_ fields.forEach(function(field) {_%>
+                <%_ if(field.type == 'input') {_%>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
+                <div class="col-md-8">
+                    <input id="<%=field.name%>"
+                    ng-model="<%=model%>.<%=field.name%>"
+                    name="<%=field.name%>" type="text" placeholder="" class="form-control input-sm" required="<%=field.required%>">
+                </div>
+            </div>
+                <%_}_%>
+                <%_ if(field.type == 'datetime-local') {_%>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
+                <div class="col-md-8">
+                    <input
+                    ng-model="<%=model%>.<%=field.name%>"
+                    id="<%=field.name%>" name="<%=field.name%>" type="datetime-local" placeholder="" class="form-control input-sm" required="">
+                </div>
+            </div>
+                <%_}_%>
+                <%_ if(field.type == 'area') {_%>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
+                <div class="col-md-8">
+                    <textarea
+                    ng-model="<%=model%>.<%=field.name%>"
+                    required=""
+                    class="form-control" id="<%=field.name%>" name="<%=field.name%>"></textarea>
+                </div>
+            </div>
+                <%_}_%>
+                <%_ if(field.type == 'select') {_%>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
+                <div class="col-md-8">
+                    <select
+                    ng-model="<%=model%>.<%=field.name%>"
+                        id="<%=field.name%>" name="<%=field.name%>" class="form-control">
+                        <%_ field.options.forEach(function(option) {_%>
+                        <option value="<%=option.value%>"><%=option.text%></option>
+                        <%_ }); _%>
+                    </select>
+                </div>
+            </div>
+                <%_}_%>
+                <%_ }); _%>
+                <div class="row">
+                    <div class="col-xs-12">
+                <div class="pull-right" style="margin-top:5px;">
+                    <button type="button" ng-click="submit()" class="btn btn-default">保存</button>
+                </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>

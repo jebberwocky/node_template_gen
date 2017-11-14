@@ -1,0 +1,12 @@
+{
+    "title":"",
+    "model":"<%=name%>",
+    "row_prefix":"",
+    "fields":
+        [
+        <%_ for(var p in schema.properties){_%>
+            {"type":"<%=schema.properties[p].type%>", "label":"", 
+                "name":"<%=p%>","required":"true"},
+        <%_ }; _%>
+        ]
+}
