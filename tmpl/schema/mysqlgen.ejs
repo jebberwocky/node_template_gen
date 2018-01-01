@@ -5,7 +5,7 @@
     "fields":
         [
         <%_ for(var p in schema.properties){_%>
-            {"type":"<%=schema.properties[p].type%>", "label":"", 
+            {"type":"<%=schema.properties[p].type%>", "label":"<%=schema.properties[p].label%>", 
                 "name":"<%=p%>","required":"true"},
         <%_ }; _%>
         ]

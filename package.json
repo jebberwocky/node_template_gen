@@ -12,5 +12,8 @@
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "mysqlspec": "^1.0.5"
+  },
+  "dependencies": {
+    "concat-files": "^0.1.1"
   }
 }

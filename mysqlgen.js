@@ -10,6 +10,8 @@ var typeMapping = {
     "date":"date"
 };
 
+var labelMapping = require('./config/namemapping.json');
+
 function gen(data, templateFile, outputFile, option){
     var htmlContent = fs.readFileSync(__dirname + templateFile, 'utf8');
     var output = ejs.render(htmlContent, data, option);
@@ -25,11 +27,17 @@ function gen(data, templateFile, outputFile, option){
 var name = 'application';
 mysqlspec(config,'gse_base',name, function (err, schema) {
     if(!err){
+        for(var k in schema.properties){
+            var x = schema.properties[k];
+            x.type = typeMapping[x.type];
+            x.label = labelMapping[k];
+        }
+        //console.log(schema);
         gen({
             "name":name,
             "schema":schema},
             '/tmpl/schema/mysqlgen.ejs', 
-            "./data/test"+name+".json");
+            "./data/"+name+".json");
     }else{
         console.log(err);
     }

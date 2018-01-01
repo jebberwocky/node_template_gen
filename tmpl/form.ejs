@@ -1,8 +1,8 @@
 <%_ fields.forEach(function(field) {_%>
     <%_ if(field.type == 'input') {_%>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
-    <div class="col-md-8">
+    <label class="col-md-2 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-10">
         <input id="<%=field.name%>"
         ng-model="<%=model%>.<%=field.name%>"
         name="<%=field.name%>" type="text" placeholder="" class="form-control input-sm" required="<%=field.required%>">
@@ -11,8 +11,8 @@
     <%_}_%>
     <%_ if(field.type == 'number') {_%>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
-    <div class="col-md-8">
+    <label class="col-md-2 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-10">
         <input id="<%=field.name%>"
         ng-model="<%=model%>.<%=field.name%>"
         name="<%=field.name%>" type="number" placeholder="" class="form-control input-sm" required="<%=field.required%>">
@@ -21,8 +21,8 @@
     <%_}_%>
     <%_ if(field.type == 'datetime-local') {_%>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
-    <div class="col-md-8">
+    <label class="col-md-2 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-10">
         <input
         ng-model="<%=model%>.<%=field.name%>"
         id="<%=field.name%>" name="<%=field.name%>" type="datetime-local" placeholder="" class="form-control input-sm" required="">
@@ -31,8 +31,8 @@
     <%_}_%>
     <%_ if(field.type == 'area') {_%>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
-    <div class="col-md-8">
+    <label class="col-md-2 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-10">
         <textarea
         ng-model="<%=model%>.<%=field.name%>"
         required=""
@@ -42,8 +42,8 @@
     <%_}_%>
     <%_ if(field.type == 'select') {_%>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="<%=field.name%>"><%=field.label%></label>
-    <div class="col-md-8">
+    <label class="col-md-2 control-label" for="<%=field.name%>"><%=field.label%></label>
+    <div class="col-md-10">
         <select
         ng-model="<%=model%>.<%=field.name%>"
          id="<%=field.name%>" name="<%=field.name%>" class="form-control">
