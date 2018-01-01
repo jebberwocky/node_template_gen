@@ -34,3 +34,11 @@
                 "name":"update_at","required":"true"}
         ]
 }
+
+{
+    "listTemplate":"manage/application/application-list.ejs",
+    "listApi":"/applications?",
+    "detailTemplate":"manage/application/application-detail.ejs",
+    "detailApi":"/application/",
+    "detailPostApi":"/application/"
+}

@@ -60,4 +60,4 @@ typings/
 # Output
 output/*
 config/*
-
+data/*.json
