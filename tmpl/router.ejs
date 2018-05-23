@@ -63,7 +63,7 @@ router.get('/detail/:id/json', function(req,res){
 
 router.post('/detail/:id/json', function(req,res){
     var id = req.params.id;
-    var api = '<%=detailPostApi%>'+id;
+    var api = '<%=detailPostApi%>'+id+'/cif0';
     var json = req.body;
     var headers = {};
     dbclient.postJSON(api, null,json,function(error, response, body){

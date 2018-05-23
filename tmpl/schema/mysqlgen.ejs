@@ -6,7 +6,7 @@
         [
         <%_ for(var p in schema.properties){_%>
             {"type":"<%=schema.properties[p].type%>", "label":"<%=schema.properties[p].label%>", 
-                "name":"<%=p%>","required":"true"},
+                "name":"<%=p%>"<%_ if(required.indexOf(p)>=0){ _%>,"required":"true"<%_}_%> },
         <%_ }; _%>
         ]
 }

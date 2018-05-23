@@ -1,4 +1,5 @@
-<div id="page-wrapper" ng-app="ngapp">
+<div id="page-content-wrapper" ng-app="ngapp">
+    <div id="page-content" style="min-height: 1119px;">
     <div class="container-fluid">
         <div ng-cloak ng-controller="basicsCtrl" class="order-edit">
             <div>
@@ -8,7 +9,7 @@
                 </div>
                 </div>
             </div>
-            <form name="theform" ng-class="{'submitted': theform.$submitted}"  class="form-horizontal">
+            <form name="theform" ng-class="{'submitted': theform.$submitted}"  class="form-horizontal  bordered-row">
             <div class="row"></div>
             <%_ fields.forEach(function(field) {_%>
                 <%_ if(field.type == 'input') {_%>
@@ -69,4 +70,5 @@
     </div>
     <!-- /.container-fluid -->
 
+    </div>
 </div>

@@ -11,7 +11,7 @@ function gen(data, templateFile, outputFile, option){
         }
         console.log("The file was saved!");
     }); 
-}
+};
 
 var concat = require('concat-files');
 function concateGened(
@@ -32,11 +32,18 @@ function concateGened(
         if (err) throw err
         console.log('done');
       });
- }
+ };
+
+ var mv = require('mv');
+ function move(src, dest){
+    mv(src, dest, function(err) {
+        console.log(err);
+      });
+ };
 
 //var strs = ["product","application"];
 //var strs = ["config.wechat","config.mis"];
-var strs = ["store"];
+var strs = ["subject"];
 
 strs.forEach(function(s){
     var data = require('./data/'+s+'.json');
@@ -54,7 +61,7 @@ strs.forEach(function(s){
     "/output/"+s+"/form-js");
 });
 
-var routers = ["store"];
+var routers = ["subject"];
 routers.forEach(function(s){
     var data = require('./data/'+s+'-router.json');
     gen(data,'/tmpl/router.ejs', "./output/route/"+s);

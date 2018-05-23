@@ -2,8 +2,6 @@ var ejs = require('ejs');
 var fs = require('fs');
 var mysqlspec = require('mysqlspec');
 
-var config = require('./config/mysql.json');
-
 var typeMapping = {
     "integer":"number",
     "string":"input",
@@ -24,21 +22,45 @@ function gen(data, templateFile, outputFile, option){
     }); 
 }
 
-var name = 'application';
-mysqlspec(config,'gse_base',name, function (err, schema) {
-    if(!err){
-        for(var k in schema.properties){
-            var x = schema.properties[k];
-            x.type = typeMapping[x.type];
-            x.label = labelMapping[k];
-        }
-        //console.log(schema);
-        gen({
-            "name":name,
-            "schema":schema},
-            '/tmpl/schema/mysqlgen.ejs', 
-            "./data/"+name+".json");
-    }else{
-        console.log(err);
+function rungen(prama){
+    if(!prama){
+        console.log("no config info");
+        return;
     }
- });
+    var name = prama.table;
+    let config = require('./config/mysql.'+prama.schema+'.json');
+    mysqlspec(config,prama.schema,name, function (err, schema) {
+        
+        if(!err){
+            for(var k in schema.properties){
+                var x = schema.properties[k];
+                x.type = typeMapping[x.type];
+                x.label = labelMapping[k];
+            }
+            console.log('---schema---');
+            console.log(schema);
+            let required = (schema.required)?schema.required:[];
+            gen({
+                "name":name,
+                "schema":schema,
+                "required":required
+            },
+                '/tmpl/schema/mysqlgen.ejs', 
+                "./data/"+name+".json");
+        }else{
+            console.log(err);
+        }
+    });
+}
+
+
+let tables = ['course','lesson','subject','grade'], schema="ese_instance";
+
+for(t in tables){
+    rungen({
+        "schema":schema,
+        "table":tables[t]
+    });
+}
+
+
