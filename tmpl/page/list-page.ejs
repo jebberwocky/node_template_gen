@@ -24,6 +24,7 @@
         <th><?=field.label?></th>
         <?_}_?>
         <?_ }); _?>
+        <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,11 @@
         <td <?- field.sort?"st-sort＝'"+field.sort+"'":'' _?>>{{row.<?=row_prefix?><?=field.name?>}}</td>
         <?_}_?>
         <?_ }); _?>
+        <td>
+            <div class="btn-group btn-group-xs" role="group">
+                <a class="btn btn-default" ng-click="select(row)" >编辑</a>
+            </div>
+        </td>
                         </tr>
                     </tbody>
                     <tfoot>

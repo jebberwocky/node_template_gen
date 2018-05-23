@@ -41,6 +41,11 @@
                 console.log(response);
             });
         }
+
+          $scope.select = function(row){
+            var url = "./detail/"+row.id;
+            $window.location.href = url;
+        }
     
         $scope.search();
     
