@@ -51,4 +51,14 @@ routers.forEach(function(s){
     "detailPostApi":"/application/"
 }
 ```
+### /config/mysql.x.json
+```javascript
+{
+    "user": "x",
+    "password": "x",
+    "host": "x",
+    "port": "x",
+    "database": "x"
+}
+```
 
