@@ -25,6 +25,17 @@
           window.history.back();
         };
         //
+<?_ fields.forEach(function(field){_?><?_ if(field.type == 'select_outer') {_?>
+        $scope.update<?=field.name?> = function(){
+            $scope.<?=model?>.<?=field.name?>_id  = $scope.selected<?=field.name?>.id;
+            $scope.<?=model?>.<?=field.name?>_name  = $scope.selected<?=field.name?>.name;
+        }
+        $http.post("/elc/<?=field.name?>/search/json", {}).then(function(response){
+            $scope.remote<?=field.name?> = response.data;
+        },function (error){});
+        
+<?_}_?><?_ }); _?>
+        //
         if('<%=id%>'!='0'){
             var req = {
               method: 'GET',
@@ -37,6 +48,12 @@
                   dialogs.error('',_r.header.display);
               }else{
                   $scope.<?=model?> = _r.content;
+<?_ fields.forEach(function(field){_?><?_ if(field.type == 'select_outer') {_?>
+    $scope.selected<?=field.name?> = {
+        "id": $scope.<?=model?>.<?=field.name?>_id,
+        "name": $scope.<?=model?>.<?=field.name?>_name
+    }
+<?_}_?><?_ }); _?>
               }
           }, function(response){
               dialogs.error('','错误');
@@ -59,7 +76,7 @@
                     if(v && v.status && v.status == "success" ){
                         if('<%=id%>'==0){
                             console.log(v);
-                            $window.location.href = v.content.niid;
+                            $window.location.href = v.content.id;
                         }else
                             dialogs.notify('提交成功', '修改已提交和保存');
                     }else{

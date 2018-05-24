@@ -43,7 +43,7 @@ function concateGened(
 
 //var strs = ["product","application"];
 //var strs = ["config.wechat","config.mis"];
-var strs = ["subject"];
+var strs = ["subject","grade","course"];
 
 strs.forEach(function(s){
     var data = require('./data/'+s+'.json');
